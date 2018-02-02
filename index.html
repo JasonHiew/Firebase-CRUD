@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <title>Firebase CRUD</title>
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway:300,400,500,700" rel="stylesheet">
+    <!-- Google Material Design Lite-->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <!-- Font Awesome Icons -->
+    <script src="https://use.fontawesome.com/76b07c66e2.js"></script>
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="fixed-top">
+            <div class="col-sm-8">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h5>All Users</h5>
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary btn-sm pull-right" data-toggle="modal" data-target="#update-modal">
+                            Launch update modal
+                        </button>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <td>Copy To</td>
+                                    <td>Name</td>
+                                    <td>Email</td>
+                                    <td>Time</td>
+                                    <td>Remove</td>
+                                    <td>Update</td>
+                                </tr>
+                            </thead>
+                            <tbody id="table_body">
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <form>
+                <div class="col-sm-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">
+                            <h5>Add people</h5>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                <label for="name">Name : </label>
+                                <input type="text" class="form-control" value="John Doe" id="name" name="name" />
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email : </label>
+                                <input type="email" class="form-control" value="johndoe@gmail.com" id="email" name="email" />
+                            </div>
+                        </div>
+                        <div class="panel-footer">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <button type="button" id="updateButton" class="btn btn-primary" onclick="addUser();">
+                                        Add
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+        </form>
+    </div>
+    <!-- Modal -->
+    <div class="modal fade" id="update-modal" tabindex="-1" role="dialog" aria-labelledby="update-modal-label" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="update-modal-label" style="display: inline;">Update User</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="name-modal">Name : </label>
+                            <input type="text" class="form-control" id="name-modal" name="name-modal" />
+                        </div>
+                        <div class="form-group">
+                            <label for="email-modal">Email : </label>
+                            <input type="email" class="form-control" id="email-modal" name="email-modal" />
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <button type="button" class="btn btn-primary" id="saveChanges">Save Changes</button>
+                            <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
+    <script>
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyCR3nSTbbcKtnk7UPFTMVVTOslEraRQhf8",
+        authDomain: "fir-website-app.firebaseapp.com",
+        databaseURL: "https://fir-website-app.firebaseio.com",
+        projectId: "fir-website-app",
+        storageBucket: "fir-website-app.appspot.com",
+        messagingSenderId: "283063655276"
+    };
+    firebase.initializeApp(config);
+    </script>
+    <script src="index.js"></script>
+</body>
+
+</html>

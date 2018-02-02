@@ -1,0 +1,115 @@
+html,
+body {
+    height: 100%;
+    margin: 0px;
+    padding: 0px;
+    /*overflow: hidden*/
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+    background: #21252b;
+    color: #333;
+    font-size: 16px;
+}
+
+.form-group label {
+    display: flex;
+    align-items: center;
+}
+
+.wrapper {
+    /*max-width: 1060px;*/
+    padding: 20px 20px;
+}
+
+
+/*table, th, td {
+   border: 1px solid grey;
+   padding: 10px;
+}*/
+
+
+* {
+    box-sizing: border-box;
+    font-family: 'Raleway', sans-serif;
+    margin: 0;
+    /*font-size: 16px;*/
+    /*outline: none;*/
+    /* border: 1px solid #f00;*/
+}
+
+input,
+button {
+    border: 0;
+    padding: 10px;
+}
+
+.panel-primary {
+    display: inline-block;
+}
+
+.mainDiv {
+    background: #fff;
+    display: inline-block;
+    overflow: auto;
+    padding: 20px 20px;
+    margin: 40px;
+    margin-bottom: 0px;
+    box-shadow: 0 0 20px #333;
+
+    /*max-width: 420px;*/
+    /*margin: 0px auto;*/
+    /*margin-top: 200px;*/
+    /*position to the right of the form*/
+    /*display: inline-block;
+    position: relative;
+    left: 50%;
+    top: 10%;
+    -webkit-transform: translate(-50%, -10%);
+    transform: translate(-50%, -10%);*/
+    /*Center content vertically and horizontally, only works on modern browsers*/
+    /* display: inline-block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);*/
+}
+
+h1 {
+    font-weight: 400;
+    /*font-size: 24px;*/
+    /*margin-bottom: 10px;*/
+}
+
+h5 {
+    display: inline;
+}
+
+/*textarea {
+    border: 0px;
+    background: #fff;
+    padding: 0px 0px;
+    outline: none;
+    width: 100%;
+    resize: none;
+}*/
+
+button {
+    background: #528bff;
+    color: #fff;
+    /*position: relative;*/
+    /*top: 50px;*/
+    /*width: 64px;*/
+    /*height: 64px;*/
+    /*line-height: 38px;*/
+    /*border-radius: 100%;*/
+}
+
+
+/*Bootstrap Elements*/
+
+.modal-header .close {
+  font-size: 40px; //bigger
+}
