@@ -108,8 +108,8 @@ button {
 }
 
 
-/*Bootstrap Elements*/
-
+/*Modal Dialog Box*/
+/*Close button*/
 .modal-header .close {
   font-size: 40px; //bigger
 }

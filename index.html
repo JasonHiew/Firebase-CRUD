@@ -41,9 +41,11 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <td>Copy To</td>
+                                    <!-- Copy to btn -->
+                                    <!-- <td>Copy To</td> -->
+                                    <td>IC</td>
                                     <td>Name</td>
-                                    <td>Email</td>
+                                    <td>Plate No</td>
                                     <td>Time</td>
                                     <td>Remove</td>
                                     <td>Update</td>
@@ -63,18 +65,22 @@
                         </div>
                         <div class="panel-body">
                             <div class="form-group">
+                                <label for="ic">IC : </label>
+                                <input type="text" class="form-control" value="900101064033" id="ic" name="ic" />
+                            </div>
+                            <div class="form-group">
                                 <label for="name">Name : </label>
                                 <input type="text" class="form-control" value="John Doe" id="name" name="name" />
                             </div>
                             <div class="form-group">
-                                <label for="email">Email : </label>
-                                <input type="email" class="form-control" value="johndoe@gmail.com" id="email" name="email" />
+                                <label for="plate-no">Plate No : </label>
+                                <input type="text" class="form-control" value="CAK1234" id="plate-no" name="plate-no" />
                             </div>
                         </div>
                         <div class="panel-footer">
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <button type="button" id="updateButton" class="btn btn-primary" onclick="addUser();">
+                                    <button type="button" id="add-button" class="btn btn-primary" onclick="addUser();">
                                         Add
                                     </button>
                                 </div>
@@ -98,12 +104,15 @@
                 <div class="modal-body">
                     <form>
                         <div class="form-group">
+                            <label for="ic-modal">IC : </label>
+                            <input type="text" class="form-control" id="ic-modal" name="ic-modal" />
+                        </div><div class="form-group">
                             <label for="name-modal">Name : </label>
                             <input type="text" class="form-control" id="name-modal" name="name-modal" />
                         </div>
                         <div class="form-group">
-                            <label for="email-modal">Email : </label>
-                            <input type="email" class="form-control" id="email-modal" name="email-modal" />
+                            <label for="plate-no-modal">Plate No : </label>
+                            <input type="email" class="form-control" id="plate-no-modal" name="plate-no-modal" />
                         </div>
                     </form>
                 </div>

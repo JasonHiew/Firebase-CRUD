@@ -8,14 +8,16 @@ rootRef.on("child_added", snap => {
 
     console.log(key);
 
+    var ic = snap.child("ic").val();
     var name = snap.child("name").val();
-    var email = snap.child("email").val();
+    var plateNo = snap.child("plateNo").val();
     var time = snap.child("time").val();
 
     $("#table_body").append("<tr id='" + key + "'>" +
-        "<td><button class='btn btn-primary'  data-id='" + key + "' onclick='copyUser(\"" + key + "\")'>Copy To</button></td>" +
+        // "<td><button class='btn btn-primary'  data-id='" + key + "' onclick='copyUser(\"" + key + "\")'>Copy To</button></td>" +
+        "<td>" + ic + "</td>" +
         "<td>" + name + "</td>" +
-        "<td>" + email + "</td>" +
+        "<td>" + plateNo + "</td>" +
         "<td>" + time + "</td>" +
         "<td><button class='btn btn-danger'  data-id='" + key + "' onclick='deleteUser(\"" + key + "\")'>Remove</button></td>" +
         "<td><button class='btn btn-primary'  data-id='" + key + "' onclick='updateUser(\"" + key + "\")' data-toggle='modal' data-target='#update-modal'>Update</button></td>" +
@@ -24,14 +26,16 @@ rootRef.on("child_added", snap => {
 
 rootRef.on("child_changed", snap => {
     var key = snap.key;
+    var ic = snap.child("ic").val();
     var name = snap.child("name").val();
-    var email = snap.child("email").val();
+    var plateNo = snap.child("plateNo").val();
     var time = snap.child("time").val();
 
     $("#" + key).replaceWith("<tr id='" + key + "'>" +
-        "<td><button class='btn btn-primary'  data-id='" + key + "' onclick='copyUser(\"" + key + "\")'>Copy To</button></td>" +
+        // "<td><button class='btn btn-primary'  data-id='" + key + "' onclick='copyUser(\"" + key + "\")'>Copy To</button></td>" +
+        "<td>" + ic + "</td>" +
         "<td>" + name + "</td>" +
-        "<td>" + email + "</td>" +
+        "<td>" + plateNo + "</td>" +
         "<td>" + time + "</td>" +
         "<td><button class='btn btn-danger'  data-id='" + key + "' onclick='deleteUser(\"" + key + "\")'>Remove</button></td>" +
         "<td><button class='btn btn-primary'  data-id='" + key + "' onclick='updateUser(\"" + key + "\")' data-toggle='modal' data-target='#update-modal'>Update</button></td>" +
@@ -54,25 +58,27 @@ function deleteUser(k) {
 
     $("#" + k).remove();
     rootRef.child(k).remove();
-
 }
 
 
 //------------------------------------------------------------------Add Function-------------------------------------------------------------------
 function addUser() {
-    var name = $("#name").val();
-    var email = $("#email").val();
 
+    var ic = $("#ic").val();
+    var name = $("#name").val();
+    var plateNo = $("#plate-no").val();
+    //Add current time into the table
     var now = new Date();
     var time = now.getFullYear() + '-' + ('0' + (now.getMonth()+1)).slice(-2) + '-' + ('0' + now.getDate()).slice(-2) + "  " + 
     now.getHours() + ":" + ('0' + (now.getMinutes())).slice(-2) + ":" + ('0' + now.getSeconds()).slice(-2);
 
-    if (name == "" || email == "") {
+    if (ic == "" || name == "" || plateNo == "") {
         alert('Please insert all details!');
     } else {
         var newData = {
-            email: email,
+            ic: ic,
             name: name,
+            plateNo: plateNo,
             time: time
         }
         rootRef.push(newData);
@@ -90,8 +96,9 @@ function updateUser(k) {
     console.log("Update btn clicked at snapshot.key : " + k)
 
     userRef.once('value', snap => {    
+        $("#ic-modal").val(snap.val().name);
         $("#name-modal").val(snap.val().name);
-        $("#email-modal").val(snap.val().email);  
+        $("#plate-no-modal").val(snap.val().email);  
 
         //Set the snapshot.key to Jquery's invisible data attribute, "data-id", of the saveChanges button in the modal dialog box
         $('#saveChanges').data('id', k);
@@ -105,15 +112,17 @@ $('#saveChanges').click(function(){
     var data = $(this).data("id");
     console.log("Changes saved to snapshot.key : " + data);
 
+    var ic = $("#ic-modal").val();
     var name = $("#name-modal").val();
-    var email = $("#email-modal").val();
+    var plateNo = $("#plate-no-modal").val();
 
-    if (name == "" || email == "") {
+    if (ic == "" || name == "" || plateNo == "") {
         alert('Please insert all details!');
     } else {
         var newData = {
+            ic: ic,
             name: name,
-            email: email,
+            plateNo: plateNo,
             // time: time
         }
 
@@ -124,15 +133,17 @@ $('#saveChanges').click(function(){
 
 function copyUser(k) {
     console.log("Copy btn clicked at snapshot.key : " + k)
-    var name = $("#name").val();
-    var email = $("#email").val();
+    var ic = $("#ic-modal").val();
+    var name = $("#name-modal").val();
+    var plateNo = $("#plate-no-modal").val();
 
-    if (name == "" || email == "") {
+    if (ic == "" || name == "" || plateNo == "") {
         alert('Please insert all details!');
     } else {
         var newData = {
+            ic: ic,
             name: name,
-            email: email,
+            plateNo: plateNo,
             // time: time
         }
         rootRef.child(k).update(newData);
