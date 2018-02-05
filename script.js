@@ -172,3 +172,73 @@ function formClear() {
 
 }
 
+//------------------------------------------------------------------Testing Login-----------------------------------------------------------
+
+// TODO Add auth state change listener as well as other auth state listeners
+// TODO Add non-interactive modal dialog that forces users to log in by showing them a button to go back to login page
+
+
+//Test Button click
+// $("#logout-button").click(function() {
+//     // location = "TVAC Studio Login/index.html";
+//     window.location.replace("login_page.html");
+// })
+
+
+
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        // User is signed in.
+        
+        // alert("Auth State Changed");
+        
+        $('#login-modal').modal('hide');        
+
+        // window.location = "index.html"
+        $("#redirect-button").css("display", "block");
+
+
+    } else {
+        // No user is signed in.
+        
+        $('#login-modal').modal('show');
+        // window.location = "login_page.html"
+         
+        // alert("Auth State Changed");
+        
+        $("#redirect-button").css("display", "none");
+    }
+});
+
+function login() {
+
+    var userEmail = $("#login-email").val();
+    var userPass = $("#login-password").val();
+
+    console.log(userEmail, userPass);
+
+    firebase.auth().signInWithEmailAndPassword(userEmail, userPass).catch(function(error) {
+        // Handle Errors here.
+        var errorCode = error.code;
+        var errorMessage = error.message;
+
+        window.alert("Error : " + errorMessage);
+
+
+        // ...
+    });
+
+
+}
+
+function logout() {
+    firebase.auth().signOut();
+}
+
+// $("#login-button").click(function(){
+//     window.location.replace("index.html");
+// })
+
+function redirect(){
+    window.location.replace("index.html");
+}

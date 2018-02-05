@@ -17,6 +17,13 @@ body {
     justify-content: flex-end;
 }
 
+#login-button, #redirect-button {
+    /*margin: 10px 10px;*/
+    /*padding: 10px;*/
+    display: block;
+    width: 100%;
+}
+
 .wrapper {
     /*max-width: 1060px;*/
     padding: 40px 20px;
@@ -42,6 +49,15 @@ input,
 button {
     border: 0;
     padding: 10px;
+}
+
+.panel-default{
+    display: inline-block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 }
 
 .panel-primary {
@@ -111,4 +127,11 @@ button {
 /*Close button*/
 .modal-header .close {
   font-size: 40px; //bigger
+}
+
+
+/*Login Modal Dialog*/
+.modal-backdrop.in
+{
+    opacity:0.9 !important;
 }
