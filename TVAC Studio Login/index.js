@@ -51,7 +51,6 @@ function login() {
 
         // ...
     });
-    window.location.replace("../index.html");
 }
 
 function logout() {

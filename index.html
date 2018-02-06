@@ -27,149 +27,147 @@
 
 <body>
     <div class="wrapper">
-        <div class="fixed-top">
-            <div class="col-md-9">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h5>All Users</h5>
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-primary btn-sm pull-right" data-toggle="modal" data-target="#login-modal">
-                            Launch login modal
-                        </button>
-                        <button type="button" class="btn btn-primary btn-sm pull-right" data-toggle="modal" data-target="#update-modal">
-                            Launch update modal
-                        </button>
-                        <!-- TODO Implement proper logout button -->
-                        <button class="btn btn-warning btn-sm pull-right" id="logout-button" onclick="logout()">Logout</button>
-                    </div>
-                    <div class="panel-body">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <!-- Copy to btn -->
-                                    <!-- <td>Copy To</td> -->
-                                    <td>IC</td>
-                                    <td>Name</td>
-                                    <td>Plate No</td>
-                                    <td>Time</td>
-                                    <td>Reason</td>
-                                    <td>Remove</td>
-                                    <td>Update</td>
-                                </tr>
-                            </thead>
-                            <tbody id="table_body">
-                            </tbody>
-                        </table>
-                    </div>
+        <div class="col-md-9">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h5>All Users</h5>
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary btn-sm pull-right" data-toggle="modal" data-target="#login-modal">
+                        Launch login modal
+                    </button>
+                    <button type="button" class="btn btn-primary btn-sm pull-right" data-toggle="modal" data-target="#update-modal">
+                        Launch update modal
+                    </button>
+                    <!-- TODO Implement proper logout button -->
+                    <button class="btn btn-warning btn-sm pull-right" id="logout-button" onclick="logout()">Logout</button>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <!-- Copy to btn -->
+                                <!-- <td>Copy To</td> -->
+                                <td>IC</td>
+                                <td>Name</td>
+                                <td>Plate No</td>
+                                <td>Time</td>
+                                <td>Reason</td>
+                                <td>Remove</td>
+                                <td>Update</td>
+                            </tr>
+                        </thead>
+                        <tbody id="table_body">
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            <form>
-                <div class="col-md-2 col-md-offset-1" id="input-form">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <h5>Add people</h5>
+        </div>
+        <div class="col-md-2 col-md-offset-1" id="input-form">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h5>Add people</h5>
+                </div>
+                <form action="javascript:void(0);">
+                    <div class="panel-body">
+                        <div class="form-group">
+                            <label for="ic">IC : </label>
+                            <input type="text" class="form-control" value="900101064033" id="ic" name="ic" />
                         </div>
-                        <div class="panel-body">
-                            <div class="form-group">
-                                <label for="ic">IC : </label>
-                                <input type="text" class="form-control" value="900101064033" id="ic" name="ic" />
-                            </div>
-                            <div class="form-group">
-                                <label for="name">Name : </label>
-                                <input type="text" class="form-control" value="John Doe" id="name" name="name" />
-                            </div>
-                            <div class="form-group">
-                                <label for="plate-no">Plate No : </label>
-                                <input type="text" class="form-control" value="CAK1234" id="plate-no" name="plate-no" />
-                            </div>
-                            <div class="form-group">
-                                <label for="reason">Reason : </label>
-                                <textarea class="form-control" rows="4" id="reason" name="reason">Visiting</textarea>
+                        <div class="form-group">
+                            <label for="name">Name : </label>
+                            <input type="text" class="form-control" value="John Doe" id="name" name="name" />
+                        </div>
+                        <div class="form-group">
+                            <label for="plate-no">Plate No : </label>
+                            <input type="text" class="form-control" value="CAK1234" id="plate-no" name="plate-no" />
+                        </div>
+                        <div class="form-group">
+                            <label for="reason">Reason : </label>
+                            <textarea class="form-control" rows="4" id="reason" name="reason">Lorem ipsum dolor sit amet</textarea>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <button type="submit" id="add-button" class="btn btn-primary" onclick="addUser();">
+                                    Add
+                                </button>
                             </div>
                         </div>
-                        <div class="panel-footer">
+                    </div>
+                </form>
+            </div>
+        </div>
+        <!--Update Modal -->
+        <div class="modal fade" id="update-modal" tabindex="-1" role="dialog" aria-labelledby="update-modal-label" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="update-modal-label" style="display: inline;">Update User</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form action="javascript:void(0);">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="ic-modal">IC : </label>
+                                <input type="text" class="form-control" id="ic-modal" name="ic-modal" />
+                            </div>
+                            <div class="form-group">
+                                <label for="name-modal">Name : </label>
+                                <input type="text" class="form-control" id="name-modal" name="name-modal" />
+                            </div>
+                            <div class="form-group">
+                                <label for="plate-no-modal">Plate No : </label>
+                                <input type="text" class="form-control" id="plate-no-modal" name="plate-no-modal" />
+                            </div>
+                            <div class="form-group">
+                                <label for="reason-modal">Reason : </label>
+                                <textarea class="form-control" rows="4" id="reason-modal" name="reason-modal"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
                             <div class="row">
                                 <div class="col-xs-12">
-                                    <button type="button" id="add-button" class="btn btn-primary" onclick="addUser();">
-                                        Add
-                                    </button>
+                                    <button type="submit" class="btn btn-primary" id="saveChanges">Save Changes</button>
+                                    <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
-        </div>
-        </form>
-    </div>
-    <!-- Modal -->
-    <div class="modal fade" id="update-modal" tabindex="-1" role="dialog" aria-labelledby="update-modal-label" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="update-modal-label" style="display: inline;">Update User</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="ic-modal">IC : </label>
-                            <input type="text" class="form-control" id="ic-modal" name="ic-modal" />
-                        </div><div class="form-group">
-                            <label for="name-modal">Name : </label>
-                            <input type="text" class="form-control" id="name-modal" name="name-modal" />
-                        </div>
-                        <div class="form-group">
-                            <label for="plate-no-modal">Plate No : </label>
-                            <input type="email" class="form-control" id="plate-no-modal" name="plate-no-modal" />
-                        </div>
-                        <div class="form-group">
-                            <label for="reason-modal">Reason : </label>
-                            <textarea class="form-control" rows="4" id="reason-modal" name="reason-modal"></textarea>
-                        </div>
                     </form>
-                </div>
-                <div class="modal-footer">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <button type="button" class="btn btn-primary" id="saveChanges">Save Changes</button>
-                            <button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- Login modal dialog -->
-    <div class="modal fade" id="login-modal" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="login-modal-label" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="login-modal-label">Login to Firebase</h5>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="login-email">Email : </label>
-                            <input type="email" class="form-control" value="demo@yahoo.com" id="login-email" name="login-email" />
-                        </div><div class="form-group">
-                            <label for="login-password">Password : </label>
-                            <input type="password" class="form-control" value="123456" id="login-password" name="login-password" />
+        <!-- Login modal dialog -->
+        <div class="modal fade" id="login-modal" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="login-modal-label" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="login-modal-label">Login to Firebase</h5>
+                    </div>
+                    <form action="javascript:void(0);">
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="login-email">Email : </label>
+                                <input type="email" class="form-control" value="demo@yahoo.com" id="login-email" name="login-email" />
+                            </div>
+                            <div class="form-group">
+                                <label for="login-password">Password : </label>
+                                <input type="password" class="form-control" value="123456" id="login-password" name="login-password" />
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <div class="row">
+                                <div class="col-xs-12">
+                                    <button type="submit" class="btn btn-primary" id="login-button" onclick="login()">Login</button>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>
-                <div class="modal-footer">
-                    <div class="row">
-                        <div class="col-xs-12">
-                            <button type="button" class="btn btn-primary" id="login-button" onclick="login()">Login</button>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
-    </div>
     </div>
     <script src="https://www.gstatic.com/firebasejs/4.9.0/firebase.js"></script>
     <script>

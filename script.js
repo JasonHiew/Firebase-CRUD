@@ -2,6 +2,28 @@ var rootRef = firebase.database().ref().child("users");
 
 var tableElement = $('#table_body');
 
+$(function () {
+    $("#reason").keypress(function (e) {
+        var code = (e.keyCode ? e.keyCode : e.which);
+        if (!e.ctrlKey && code == 13) {
+            e.preventDefault();
+            $("#add-button").trigger('click');
+            return false;
+        }
+    });
+});
+
+$(function () {
+    $("#reason-modal").keypress(function (e) {
+        var code = (e.keyCode ? e.keyCode : e.which);
+        if (!e.ctrlKey && code == 13) {
+            e.preventDefault();
+            $("#saveChanges").trigger('click');
+            return false;
+        }
+    });
+});
+
 // -------------------------------------------------------------Table update listeners---------------------------------------------------------------------
 rootRef.on("child_added", snap => {
     var key = snap.key;
