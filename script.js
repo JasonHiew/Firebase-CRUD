@@ -1,5 +1,7 @@
 var rootRef = firebase.database().ref().child("users");
 
+//-------------------------------------------------------Input validation rules(JQuery)-------------------------------------------------------
+
 //-------------------------------------------------------Submit form on "Enter" keypress-------------------------------------------------------
 $(function () {
     $("#reason").keypress(function (e) {
@@ -43,7 +45,7 @@ rootRef.on("child_added", snap => {
         "<td>" + time + "</td>" +
         "<td>" + reason + "</td>" +
         "<td><button class='btn btn-danger'  data-id='" + key + "' onclick='deleteUser(\"" + key + "\")'>Remove</button></td>" +
-        "<td><button class='btn btn-primary'  data-id='" + key + "' onclick='updateUser(\"" + key + "\")' data-toggle='modal' data-target='#update-modal'>Update</button></td>" +
+        "<td><button class='btn btn-primary'  data-id='" + key + "' onclick='updateUser(\"" + key + "\")' data-toggle='modal' data-target='#update-modal-form'>Update</button></td>" +
         "</tr>");
 });
 
@@ -63,7 +65,7 @@ rootRef.on("child_changed", snap => {
         "<td>" + time + "</td>" +
         "<td>" + reason + "</td>" +
         "<td><button class='btn btn-danger'  data-id='" + key + "' onclick='deleteUser(\"" + key + "\")'>Remove</button></td>" +
-        "<td><button class='btn btn-primary'  data-id='" + key + "' onclick='updateUser(\"" + key + "\")' data-toggle='modal' data-target='#update-modal'>Update</button></td>" +
+        "<td><button class='btn btn-primary'  data-id='" + key + "' onclick='updateUser(\"" + key + "\")' data-toggle='modal' data-target='#update-modal-form'>Update</button></td>" +
         "</tr>");
 });
 
@@ -79,7 +81,7 @@ rootRef.on("child_removed", oldSnap => {
 //-----------------------------------------------------------------Row delete function----------------------------------------------------------------------
 function deleteUser(k) {
 
-    console.log("Remove btn clicked at snapshot.key : " + k)
+    console.log("Remove btn clicked at snapshot.key : " + k);
 
     $("#" + k).remove();
     rootRef.child(k).remove();
@@ -107,7 +109,7 @@ function addUser() {
             plateNo: plateNo,
             time: time,
             reason: reason
-        }
+        };
         rootRef.push(newData);
     }
 
@@ -120,7 +122,7 @@ function updateUser(k) {
     // var k = $(this).data('id');
     var userRef = firebase.database().ref('users/' + k);
 
-    console.log("Update btn clicked at snapshot.key : " + k)
+    console.log("Update btn clicked at snapshot.key : " + k);
 
     userRef.once('value', snap => {    
         $("#ic-modal").val(snap.val().ic);
@@ -131,7 +133,7 @@ function updateUser(k) {
 
         //Set the snapshot.key to Jquery's invisible data attribute, "data-id", of the saveChanges button in the modal dialog box
         $('#saveChanges').data('id', k);
-    })
+    });
 }
 
 //On Click of Save Changes btn in modal window
@@ -155,15 +157,15 @@ $('#saveChanges').click(function(){
             plateNo: plateNo,
             reason: reason,
             // time: time
-        }
+        };
 
         rootRef.child(data).update(newData);
-        $('#update-modal').modal('toggle');
+        $('#update-modal-form').modal('toggle');
     }
 });
 
 function copyUser(k) {
-    console.log("Copy btn clicked at snapshot.key : " + k)
+    console.log("Copy btn clicked at snapshot.key : " + k);
     var ic = $("#ic-modal").val();
     var name = $("#name-modal").val();
     var plateNo = $("#plate-no-modal").val();
@@ -178,7 +180,7 @@ function copyUser(k) {
             plateNo: plateNo,
             reason: reason,
             // time: time
-        }
+        };
         rootRef.child(k).update(newData);
     }
 }
@@ -213,7 +215,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         
         // alert("Auth State Changed");
         
-        $('#login-modal').modal('hide');        
+        $('#login-modal-form').modal('hide');        
 
         // window.location = "index.html"
         $("#redirect-button").css("display", "block");
@@ -222,7 +224,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     } else {
         // No user is signed in.
         
-        $('#login-modal').modal('show');
+        $('#login-modal-form').modal('show');
         // window.location = "login_page.html"
          
         // alert("Auth State Changed");

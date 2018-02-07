@@ -32,10 +32,10 @@
                 <div class="panel-heading">
                     <h5>All Users</h5>
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-primary btn-sm pull-right" data-toggle="modal" data-target="#login-modal">
+                    <button type="button" class="btn btn-primary btn-sm pull-right" data-toggle="modal" data-target="#login-modal-form">
                         Launch login modal
                     </button>
-                    <button type="button" class="btn btn-primary btn-sm pull-right" data-toggle="modal" data-target="#update-modal">
+                    <button type="button" class="btn btn-primary btn-sm pull-right" data-toggle="modal" data-target="#update-modal-form">
                         Launch update modal
                     </button>
                     <!-- TODO Implement proper logout button -->
@@ -69,7 +69,7 @@
                 <div class="col-md-6 well">col-md-0.5</div>
             </div>
         </div> -->
-        <div class="col-md-3" id="input-form">
+        <div class="col-md-3 right" id="input-form">
             <div class="panel panel-primary">
                 <div class="panel-heading">
                     <h5>Add people</h5>
@@ -106,11 +106,11 @@
             </div>
         </div>
         <!--Update Modal -->
-        <div class="modal fade" id="update-modal" tabindex="-1" role="dialog" aria-labelledby="update-modal-label" aria-hidden="true">
+        <div class="modal fade" id="update-modal-form" tabindex="-1" role="dialog" aria-labelledby="update-modal-form-label" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="update-modal-label" style="display: inline;">Update User</h5>
+                        <h5 class="modal-title" id="update-modal-form-label" style="display: inline;">Update User</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
@@ -147,21 +147,21 @@
             </div>
         </div>
         <!-- Login modal dialog -->
-        <div class="modal fade" id="login-modal" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="login-modal-label" aria-hidden="true">
+        <div class="modal fade" id="login-modal-form" tabindex="-1" data-backdrop="static" data-keyboard="false" role="dialog" aria-labelledby="login-modal-form-label" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="login-modal-label">Login to Firebase</h5>
+                        <h5 class="modal-title" id="login-modal-form-label">Login to Firebase</h5>
                     </div>
                     <form action="javascript:void(0);">
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="login-email">Email : </label>
-                                <input type="email" class="form-control" value="demo@yahoo.com" id="login-email" name="login-email" />
+                                <input type="email" class="form-control" id="login-email" name="login-email" placeholder="Email" value="demo@yahoo.com" />
                             </div>
                             <div class="form-group">
                                 <label for="login-password">Password : </label>
-                                <input type="password" class="form-control" value="123456" id="login-password" name="login-password" />
+                                <input type="password" class="form-control" id="login-password" name="login-password" placeholder="Password"  value="123456" required/>
                             </div>
                         </div>
                         <div class="modal-footer">
