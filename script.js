@@ -1,7 +1,6 @@
 var rootRef = firebase.database().ref().child("users");
 
-var tableElement = $('#table_body');
-
+//-------------------------------------------------------Submit form on "Enter" keypress-------------------------------------------------------
 $(function () {
     $("#reason").keypress(function (e) {
         var code = (e.keyCode ? e.keyCode : e.which);
@@ -23,7 +22,7 @@ $(function () {
         }
     });
 });
-
+// -------------------------------------------------------End of Submit form on "Enter" keypress---------------------------------------------------
 // -------------------------------------------------------------Table update listeners---------------------------------------------------------------------
 rootRef.on("child_added", snap => {
     var key = snap.key;
