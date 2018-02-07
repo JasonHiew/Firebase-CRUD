@@ -1,15 +1,15 @@
 html,
 body {
     height: 100%;
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     /*overflow: hidden*/
 }
 
 body {
-    font-family: 'Raleway', sans-serif;
     background: #21252b;
     color: #333;
+    font-family: 'Raleway', sans-serif;
     font-size: 16px;
 }
 
@@ -60,23 +60,14 @@ button {
 
 .mainDiv {
     background: #fff;
+    box-shadow: 0 0 20px #333;
     display: inline-block;
+    margin: 40px;
+    margin-bottom: 0;
     overflow: auto;
     padding: 20px 20px;
-    margin: 40px;
-    margin-bottom: 0px;
-    box-shadow: 0 0 20px #333;
+}
 
-    /*max-width: 420px;*/
-    /*margin: 0px auto;*/
-    /*margin-top: 200px;*/
-    /*position to the right of the form*/
-    /*display: inline-block;
-    position: relative;
-    left: 50%;
-    top: 10%;
-    -webkit-transform: translate(-50%, -10%);
-    transform: translate(-50%, -10%);*/
     /*Center content vertically and horizontally, only works on modern browsers*/
     /* display: inline-block;
     position: absolute;
@@ -84,7 +75,6 @@ button {
     top: 50%;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);*/
-}
 
 h1 {
     font-weight: 400;
@@ -131,4 +121,9 @@ button {
 }
 
 
-/*----------------------------------------login_page.html---------------------------------------*/
+/*Sticky login form*/
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%
+}
