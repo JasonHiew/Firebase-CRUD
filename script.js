@@ -3,8 +3,8 @@ var rootRef = firebase.database().ref().child("users");
 //-------------------------------------------------------Input validation rules(JQuery)-------------------------------------------------------
 
 //-------------------------------------------------------Submit form on "Enter" keypress-------------------------------------------------------
-$(function () {
-    $("#reason").keypress(function (e) {
+$(function() {
+    $("#reason").keypress(function(e) {
         var code = (e.keyCode ? e.keyCode : e.which);
         if (!e.ctrlKey && code == 13) {
             e.preventDefault();
@@ -14,8 +14,8 @@ $(function () {
     });
 });
 
-$(function () {
-    $("#reason-modal").keypress(function (e) {
+$(function() {
+    $("#reason-modal").keypress(function(e) {
         var code = (e.keyCode ? e.keyCode : e.which);
         if (!e.ctrlKey && code == 13) {
             e.preventDefault();
@@ -26,6 +26,26 @@ $(function () {
 });
 // -------------------------------------------------------End of Submit form on "Enter" keypress---------------------------------------------------
 // -------------------------------------------------------------Table update listeners---------------------------------------------------------------------
+function refresh() {
+    rootRef.on("value", function(snapshot) {
+
+            $("#table_body").empty();
+
+            snapshot.forEach(function(data) {
+                var key = data.key;
+                $("#table_body").append("<tr id='" + key + "'>" +
+                    "<td>" + data.val().ic + "</td>" +
+                    "<td>" + data.val().name + "</td>" +
+                    "<td>" + data.val().plateNo + "</td>" +
+                    "<td>" + data.val().time + "</td>" +
+                    "<td>" + data.val().reason + "</td>" +
+                    "<td><button class='btn btn-danger'  data-id='" + key + "' onclick='deleteUser(\"" + key + "\")'>Remove</button></td>" +
+                    "<td><button class='btn btn-primary'  data-id='" + key + "' onclick='updateUser(\"" + key + "\")' data-toggle='modal' data-target='#update-modal-form'>Update</button></td>" +
+                    "</tr>");
+            });
+        });
+}
+
 rootRef.on("child_added", snap => {
     var key = snap.key;
 
@@ -85,6 +105,7 @@ function deleteUser(k) {
 
     $("#" + k).remove();
     rootRef.child(k).remove();
+    refresh();
 }
 
 
@@ -97,8 +118,8 @@ function addUser() {
     var reason = $("#reason").val();
     //Add current time into the table
     var now = new Date();
-    var time = now.getFullYear() + '-' + ('0' + (now.getMonth()+1)).slice(-2) + '-' + ('0' + now.getDate()).slice(-2) + "  " + 
-    now.getHours() + ":" + ('0' + (now.getMinutes())).slice(-2) + ":" + ('0' + now.getSeconds()).slice(-2);
+    var time = now.getFullYear() + '-' + ('0' + (now.getMonth() + 1)).slice(-2) + '-' + ('0' + now.getDate()).slice(-2) + "  " +
+        now.getHours() + ":" + ('0' + (now.getMinutes())).slice(-2) + ":" + ('0' + now.getSeconds()).slice(-2);
 
     if (ic == "" || name == "" || plateNo == "" || plateNo == "") {
         alert('Please insert all details!');
@@ -114,6 +135,8 @@ function addUser() {
     }
 
     console.log("Add btn clicked");
+
+    refresh();
     // formClear();
 }
 
@@ -124,11 +147,11 @@ function updateUser(k) {
 
     console.log("Update btn clicked at snapshot.key : " + k);
 
-    userRef.once('value', snap => {    
+    userRef.once('value', snap => {
         $("#ic-modal").val(snap.val().ic);
         $("#name-modal").val(snap.val().name);
-        $("#plate-no-modal").val(snap.val().plateNo); 
-        $("#reason-modal").val(snap.val().reason); 
+        $("#plate-no-modal").val(snap.val().plateNo);
+        $("#reason-modal").val(snap.val().reason);
 
 
         //Set the snapshot.key to Jquery's invisible data attribute, "data-id", of the saveChanges button in the modal dialog box
@@ -137,8 +160,8 @@ function updateUser(k) {
 }
 
 //On Click of Save Changes btn in modal window
-$('#saveChanges').click(function(){
-    
+$('#saveChanges').click(function() {
+
     //Retrieve the snapshot.key passed to data-id in saveChanges button in the modal dialog box
     var data = $(this).data("id");
     console.log("Changes saved to snapshot.key : " + data);
@@ -212,10 +235,10 @@ function formClear() {
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         // User is signed in.
-        
+
         // alert("Auth State Changed");
-        
-        $('#login-modal-form').modal('hide');        
+
+        $('#login-modal-form').modal('hide');
 
         // window.location = "index.html"
         $("#redirect-button").css("display", "block");
@@ -223,12 +246,12 @@ firebase.auth().onAuthStateChanged(function(user) {
 
     } else {
         // No user is signed in.
-        
+
         $('#login-modal-form').modal('show');
         // window.location = "login_page.html"
-         
+
         // alert("Auth State Changed");
-        
+
         $("#redirect-button").css("display", "none");
     }
 });
@@ -258,10 +281,41 @@ function logout() {
     firebase.auth().signOut();
 }
 
-// $("#login-button").click(function(){
-//     window.location.replace("index.html");
-// })
 
-function redirect(){
-    window.location.replace("index.html");
+
+
+
+
+// Testing Firebase
+
+function search() {
+    var search = $("#search-input").val();
+
+    var ref = firebase.database().ref();
+
+    if (search) {
+        ref.child('users').orderByChild('ic').startAt(search).endAt(search + "\uf8ff").on("value", function(snapshot) {
+            console.log(snapshot.val());
+            snapshot.forEach(function(data) {
+                console.log(data.key);
+            });
+
+            $("#table_body").empty();
+
+            snapshot.forEach(function(data) {
+                var key = data.key;
+                $("#table_body").append("<tr id='" + key + "'>" +
+                    "<td>" + data.val().ic + "</td>" +
+                    "<td>" + data.val().name + "</td>" +
+                    "<td>" + data.val().plateNo + "</td>" +
+                    "<td>" + data.val().time + "</td>" +
+                    "<td>" + data.val().reason + "</td>" +
+                    "<td><button class='btn btn-danger'  data-id='" + key + "' onclick='deleteUser(\"" + key + "\")'>Remove</button></td>" +
+                    "<td><button class='btn btn-primary'  data-id='" + key + "' onclick='updateUser(\"" + key + "\")' data-toggle='modal' data-target='#update-modal-form'>Update</button></td>" +
+                    "</tr>");
+            });
+        });
+    } else {
+         refresh();
+    }
 }

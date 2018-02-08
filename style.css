@@ -1,5 +1,7 @@
+/* -------------------------------------------------Basic HTML Customization-------------------------------------------------*/
 html,
 body {
+    box-sizing: border-box;
     height: 100%;
     margin: 0;
     padding: 0;
@@ -13,52 +15,57 @@ body {
     font-size: 16px;
 }
 
-.right {
-    bottom: 0;
-    max-width: 400px;
-    position: fixed;
-    right: 0;
-    top: 0;
-}
-
-#login-button, #redirect-button {
-    /*margin: 10px 10px;*/
-    /*padding: 10px;*/
-    display: block;
-    width: 100%;
-}
-
-.wrapper {
-    /*max-width: 1060px;*/
-    /* padding: 40px 20px; */
-}
-
-
-/*table, th, td {
-   border: 1px solid grey;
-   padding: 10px;
-}*/
-
-
-* {
-    box-sizing: border-box;
-    font-family: 'Raleway', sans-serif;
-    margin: 0;
-    /*font-size: 16px;*/
-    /*outline: none;*/
-    /* border: 1px solid #f00;*/
-}
-
 input,
 button {
     border: 0;
     padding: 10px;
 }
 
+h1 {
+    font-weight: 400;
+}
+
+h5 {
+    display: inline;
+}
+
+button {
+    background: #528bff;
+    color: #fff;
+    /*position: relative;*/
+    /*top: 50px;*/
+    /*width: 64px;*/
+    /*height: 64px;*/
+    /*line-height: 38px;*/
+    /*border-radius: 100%;*/
+}
+
+/*table, th, td {
+   border: 1px solid grey;
+   padding: 10px;
+}*/
+
+/* .wrapper {
+    max-width: 1060px;
+    padding: 40px 20px;
+} */
 
 
-.panel-primary {
-    display: inline-block;
+/* -------------------------------------------------Classes and IDs Customization-------------------------------------------------*/
+
+/*Center content vertically and horizontally, only works on modern browsers*/
+    /* display: inline-block;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);*/
+
+
+#login-button, #redirect-button {
+    /*margin: 10px 10px;*/
+    /*padding: 10px;*/
+    display: block;
     width: 100%;
 }
 
@@ -72,44 +79,18 @@ button {
     padding: 20px 20px;
 }
 
-    /*Center content vertically and horizontally, only works on modern browsers*/
-    /* display: inline-block;
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);*/
-
-h1 {
-    font-weight: 400;
-    /*font-size: 24px;*/
-    /*margin-bottom: 10px;*/
-}
-
-h5 {
-    display: inline;
-}
-
-/*textarea {
-    border: 0px;
-    background: #fff;
-    padding: 0px 0px;
-    outline: none;
+.panel-primary {
+    display: inline-block;
     width: 100%;
-    resize: none;
-}*/
-
-button {
-    background: #528bff;
-    color: #fff;
-    /*position: relative;*/
-    /*top: 50px;*/
-    /*width: 64px;*/
-    /*height: 64px;*/
-    /*line-height: 38px;*/
-    /*border-radius: 100%;*/
 }
 
+.right {
+    bottom: 0;
+    max-width: 400px;
+    position: fixed;
+    right: 0;
+    top: 0;
+}
 
 /*Modal Dialog Box*/
 /*Close button*/
